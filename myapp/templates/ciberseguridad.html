@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Servicio de Ciberseguridad</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+      }
+      .navbar {
+        background-color: #343a40;
+        color: #fff;
+      }
+      .navbar a {
+        color: #fff !important;
+        padding: 0 20px;
+      }
+      .navbar a:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s;
+      }
+      .container {
+        background-color: #30262659;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="{% url 'home' %}">Mi Aplicación</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'chatbot' %}">Chatbot</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'ciberseguridad' %}"
+              >Ciberseguridad</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'servers' %}">Servidores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca' %}">Acerca de Mi</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDarkDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Bienvenido, {{ user.email }}
+              <img
+              src="{% static 'person.jpg' %}"
+              alt="Avatar"
+                class="rounded-circle"
+                width="40"
+                height="40"
+              />
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-dark"
+              aria-labelledby="navbarDarkDropdownMenuLink"
+            >
+              <li>
+                <a class="dropdown-item" href="{% url 'profile' %}"
+                  >Mi perfil</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'login' %}"
+                  >Cambiar Cuenta</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'logout' %}"
+                  >Cerrar sesión</a
+                >
+              </li>
+            </ul>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="jumbotron">
+        <h1 class="display-4">Servicio de Ciberseguridad</h1>
+        <p class="lead">
+          Protege tu negocio y datos contra amenazas cibernéticas.
+        </p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <h2>¿Qué es la Ciberseguridad?</h2>
+          <p>
+            La ciberseguridad se refiere a las prácticas y medidas diseñadas
+            para proteger sistemas informáticos, redes y datos de posibles
+            amenazas y ataques cibernéticos. Esto incluye la prevención de
+            accesos no autorizados, la detección de intrusiones y la protección
+            contra malware y virus.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <img
+            src="{% static 'cyber3.webp' %}"
+            class="img-fluid"
+            alt="Ciberseguridad"
+          />
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-6">
+          <img
+            src="{% static 'cyber2.jpg' %}"
+            class="img-fluid"
+            alt="Servicio de Ciberseguridad"
+          />
+        </div>
+        <div class="col-md-6">
+          <h2>Servicio de Ciberseguridad Avanzada</h2>
+          <p>
+            Nuestro servicio de ciberseguridad está diseñado para proteger tu
+            negocio contra las amenazas cibernéticas en constante evolución.
+            Ofrecemos soluciones personalizadas que incluyen detección temprana
+            de amenazas, análisis de vulnerabilidades, protección de datos y
+            respuesta rápida a incidentes de seguridad.
+          </p>
+          <a href="#" class="btn btn-primary">Más detalles</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

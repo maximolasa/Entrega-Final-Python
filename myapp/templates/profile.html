@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Perfil</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+      }
+      .navbar {
+        background-color: #343a40;
+        color: #fff;
+      }
+      .navbar a {
+        color: #fff !important;
+        padding: 0 20px;
+      }
+      .navbar a:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s;
+      }
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="{% url 'home' %}">Mi Aplicación</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'chatbot' %}">Chatbot</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'ciberseguridad' %}"
+              >Ciberseguridad</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'servers' %}">Servidores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca' %}">Acerca de Mi</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDarkDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Bienvenido, {{ user.email }}
+              <img
+              src="{% static 'person.jpg' %}"
+              alt="Avatar"
+                class="rounded-circle"
+                width="40"
+                height="40"
+              />
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-dark"
+              aria-labelledby="navbarDarkDropdownMenuLink"
+            >
+              <li>
+                <a class="dropdown-item" href="{% url 'profile' %}"
+                  >Mi perfil</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'login' %}"
+                  >Cambiar Cuenta</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'logout' %}"
+                  >Cerrar sesión</a
+                >
+              </li>
+            </ul>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="container mt-5">
+      <div class="card">
+        <div class="card-header">
+          <h2>Perfil de Usuario</h2>
+        </div>
+        <div class="card-body">
+          <img
+          src="{% static 'person.jpg' %}"
+          alt="Avatar"
+            class="rounded-circle"
+            width="100"
+            height="100"
+          />
+          <p><strong>Nombre de usuario:</strong> {{ user.username }}</p>
+          <p><strong>Correo electrónico:</strong> {{ user.email }}</p>
+          <a href="{% url 'modify_user' %}" class="btn btn-primary"
+            >Modificar Usuario</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
